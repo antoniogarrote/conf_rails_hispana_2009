@@ -1,0 +1,31 @@
+<%= render :partial => 'shared/notifications' %>
+
+<h1>User registration:</h1>
+<form action='/users' method='post'>
+  <span>
+    <label for='name'>login: </label>
+    <input name='login' type='text'/>
+  </span>
+  <br/>
+  <span>
+    <label for='name'>password: </label>
+    <input name='password'  type='password' />
+  </span>
+  <br/>
+  <span>
+    <label for='name'>password confirmation: </label>
+    <input name='password_confirmation' type='password' />
+  </span>
+  <br/>
+  <span>
+    <label for='name'> name: </label>
+    <input name='name'  type='text' />
+  </span>
+  <br/>
+  <span>
+    <label for='name'>email: </label>
+    <input name='email'  type='text'/>
+  </span>
+  <br/>
+  <input type='submit' value='register'/>
+</form>

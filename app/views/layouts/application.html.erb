@@ -1,0 +1,9 @@
+<% if logged? %>
+<div id ='user_options'>
+  <%= link_to 'admin', :controller => 'users', :action => 'show', :id => current_user_id %>
+  <%= link_to 'new blog', :controller => 'blogs', :action => 'new' %>
+  <%= link_to 'log out', :controller => 'sessions', :action => 'destroy' %>
+</div>
+<% end %>
+
+<%= yield %>

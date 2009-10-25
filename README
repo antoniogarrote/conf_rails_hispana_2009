@@ -1,0 +1,5 @@
+Un proyecto de ejemplo para la Conferencia Rails Hispana 2009.
+
+
+El proyecto consiste en agnostic blog, una pequeño gestor de blogs cuya capa de persistencia, mediante una ligera capa
+de abstracción, esta implementada con CouchDB, Redis y Cassandra.

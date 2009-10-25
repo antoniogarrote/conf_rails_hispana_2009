@@ -1,0 +1,17 @@
+<%= render :partial => 'shared/notifications' %>
+
+<h1> New Blog:</h1>
+<form action='/blogs' method='post'>
+  <span>
+    <label for='name'>title: </label>
+    <input name='title' type='text'/>
+  </span>
+  <br/>
+  <span>
+    <label for='name'>description: </label>
+    <textarea name='description' cols='50' rows='20'>
+    </textarea>
+  </span>
+  <br/>
+  <input type='submit' value='create'/>
+</form>

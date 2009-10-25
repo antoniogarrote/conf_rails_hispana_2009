@@ -1,0 +1,21 @@
+<%= render :partial => 'shared/notifications' %>
+
+
+<h1> Blog: <%= @blog.get(:title) %> </h1>
+
+<h2>New Post:</h2>
+<form action='/blogs/<%= @blog.get(:id) %>/posts/create' method='post'>
+  <%= hidden_field_tag :user_id, @blog.get(:user_id) %>
+ <span>
+    <label for='name'>title: </label>
+    <input type='text' name='title'/>
+  </span>
+  <br/>
+  <span>
+    <label for='name'>content: </label>
+    <textarea name='content' cols='50' rows='20'>
+   </textarea>
+  </span>
+  <br/>
+  <input type='submit' value='create'/>
+</form>
