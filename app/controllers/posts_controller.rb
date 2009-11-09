@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     begin
       @blog = Blog.find(:by_id, params[:blog_id])
       @post = Post.find(:by_id, params[:id])
+      @comments = @post.relation(:comments)
       @user = current_user
     rescue Exception => ex
       flash[:error] = "Impossible to find blog: #{ex.message}"

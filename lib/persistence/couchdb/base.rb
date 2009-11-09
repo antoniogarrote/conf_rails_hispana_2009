@@ -9,6 +9,7 @@ module PersistenceCouchDB
     include PersistenceCouchDB::Session
     include PersistenceCouchDB::Blog
     include PersistenceCouchDB::Post
+    include PersistenceCouchDB::Comment
 
     attr_accessor :properties
 

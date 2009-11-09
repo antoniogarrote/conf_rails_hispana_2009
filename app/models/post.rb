@@ -5,7 +5,7 @@ class Post < AgnosticObject
   def self.create!(properties)
 
     raise Exception.new(":user_id is mandatory") if properties[:user_id].nil?
-    raise Exception.new(":user_id is mandatory") if properties[:blog_id].nil?
+    raise Exception.new(":blog_id is mandatory") if properties[:blog_id].nil?
     raise Exception.new(":title is mandatory") if properties[:title].nil?
     raise Exception.new(":title is mandatory") if properties[:content].nil?
 

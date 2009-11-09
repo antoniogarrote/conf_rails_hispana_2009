@@ -46,6 +46,13 @@ module PersistenceCouchDB
                                        emit([doc.blog_id, doc.created_at], doc)
                                      }
                                    }'
+                        },
+                        "relation_post_comments" => {
+                          :map => 'function(doc){
+                                     if(doc.type=="comment") {
+                                       emit([doc.post_id, doc.created_at], doc)
+                                     }
+                                   }'
                         }
                       }
               })

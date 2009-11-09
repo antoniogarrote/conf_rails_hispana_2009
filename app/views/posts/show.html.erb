@@ -17,4 +17,16 @@
       <%= @post.get(:content) %>
     </div>
   </div>
+  <div class='post-comments'>
+    <% @comments.each do |comment| %>
+      <div class='comment'>
+        <span class='comment-author'>
+          <%= comment.user_name %> said at <%=  comment.created_at %>
+        </span>
+        <span class='comment-body'>
+          <%= comment.content %>
+        </span>
+      </div>
+    <% end %>
+  </div>
 </div>

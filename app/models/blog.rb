@@ -7,6 +7,7 @@ class Blog < AgnosticObject
     raise Exception.new(":user_id is mandatory") if properties[:user_id].nil?
     raise Exception.new(":title is mandatory") if properties[:title].nil?
 
+
     @blog = Blog.new
     properties.each_pair{ |k,v| @blog.set(k,v)}
 
