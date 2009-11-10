@@ -1,0 +1,8 @@
+# Rails
+log/*
+doc/*
+tmp/*
+
+# Bundler
+bin/*
+vendor/gems/*

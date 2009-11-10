@@ -40,10 +40,24 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
   # Persistence
-  require 'couchrest'
+  if ENV['ENGINE']
 
-  PERSISTENCE = 'couchdb'
+    # gems requirements
+    case PERSISTENCE = ENV['ENGINE']
+      when 'couchdb'
+        require 'couchrest'
+      when 'redis'
+        require 'redis'
+      when 'cassandra'
+    end
 
-  require File.join(RAILS_ROOT, "lib/persistence/couchdb/init")
+    require File.join(RAILS_ROOT, "lib/persistence/#{PERSISTENCE}/init")
+  else
+    puts ' *** Please, choose one of the available engines: couchdb, redis or cassandra.'
+    puts ' *** Use the ENGINE environment variable as follows:'
+    puts ' *** $> ENGINE=couchdb ruby script/console'
+    exit 2
+  end
+
   Persistence::Setup.boot!
 end
