@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'blogs/:blog_id/posts/update/:id', :controller => 'posts', :action => 'update'
   map.connect 'blogs/:blog_id/posts/create', :controller => 'posts', :action => 'create'
   map.connect 'blogs/:blog_id/posts/:id', :controller => 'posts'
+  map.connect 'blogs/:blog_id/posts/:post_id/comments/create', :controller => 'comments', :action => 'create'
 
   map.connect 'sign_up', :controller => 'users', :action => 'new'
   map.resources :users

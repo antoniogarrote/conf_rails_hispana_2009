@@ -17,14 +17,24 @@
       <%= @post.get(:content) %>
     </div>
   </div>
+  <div class='new-comment'>
+    <form action="/blogs/<%= @blog.get(:id) %>/posts/<%= @post.get(:id) %>/comments/create" action="post">
+      <label for='content'>
+        comment:
+       </label>
+      <textarea name='content' cols='50' rows='20'>
+      </textarea>
+      <input type="submit" value='create'></input>
+    </form>
+  </div>
   <div class='post-comments'>
     <% @comments.each do |comment| %>
       <div class='comment'>
         <span class='comment-author'>
-          <%= comment.user_name %> said at <%=  comment.created_at %>
+          <%= comment.get(:user_name )%> said at <%=  comment.get(:created_at) %>
         </span>
         <span class='comment-body'>
-          <%= comment.content %>
+          <%= comment.get(:content) %>
         </span>
       </div>
     <% end %>
