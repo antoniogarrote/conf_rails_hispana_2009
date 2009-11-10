@@ -117,6 +117,14 @@ module PersistenceCouchDB
       self.send(relation_method, arguments)
     end
 
+    # It accepts an this_page page number, a number of items per page
+    # and a hash of conditions.
+    # It must returns tuple with two components the number
+    # of pages, and the items in this_page.
+    def self.paginate(items_per_page, this_page, conditions)
+      #self.send(:do_paginate, [items_per_page,this_page, conditions])
+      do_paginate(items_per_page, this_page, conditions)
+    end
 
     # particular functions
 
