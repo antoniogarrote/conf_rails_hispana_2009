@@ -1,6 +1,6 @@
 require 'digest'
 
-module PersistenceCouchDB
+module PersistenceRedis
   module User
 
     def self.included(base)
@@ -10,25 +10,23 @@ module PersistenceCouchDB
 
     module ClassMethods
       def user_by_login(login)
-        id = Digest::MD5.hexdigest(login)
-        props = PersistenceCouchDB::Setup.db.get(id)
-        u = ::User.new
-        u.properties = props
-        u
+        #arguments = Digest::MD5.hexdigest(login)
+        return self.new(Marshal.load(PersistenceRedis::Setup.db.get("#{self.name}:#{login}")))
       end
 
-      def user_by_id(id)
-        props = PersistenceCouchDB::Setup.db.get(id)
-        u = ::User.new
-        u.properties = props
-        u
-      end
+#      def user_by_id(id)
+#        u = ::User.new
+#        u.properties = Marshal.load(PersistenceRedis::Setup.db.get("#{@model}:#{id}"))
+#        u
+#      end
     end
 
     module InstanceMethods
       def relation_user_blogs(args)
-        vals = Persistence::Setup.db.view('application/relation_user_blogs', :startkey => [@properties['_id']])["rows"].map{|r| r["value"]}
-        vals.map{|d| b = ::Blog.new; b.properties = d; b}
+        ids = Persistence::Setup.db.list_range("User:#{@properties[:id]}:blogs", 0, -1)
+        ids.map {|id| Blog.find(:by_id, id)}
+        #vals = Persistence::Setup.db.view('application/relation_user_blogs', :startkey => [@properties['_id']])["rows"].map{|r| r["value"]}
+        #vals.map{|d| b = ::Blog.new; b.properties = d; b}
       end
     end
 
