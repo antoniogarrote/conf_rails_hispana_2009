@@ -2,6 +2,10 @@ require 'digest'
 
 class User < AgnosticObject
 
+  if AgnosticObject.superclass.superclass == RedisRecord::Model
+    has_many :blogs
+  end
+
   agnostic_accessor :login
   agnostic_accessor :password_hash
   agnostic_accessor :email

@@ -1,5 +1,9 @@
 class Comment < AgnosticObject
 
+  if AgnosticObject.superclass.superclass == RedisRecord::Model
+    belongs_to :post
+  end
+
   def self.create!(properties)
 
     raise Exception.new(":content is mandatory") if properties[:content].nil?

@@ -6,3 +6,6 @@ tmp/*
 # Bundler
 bin/*
 vendor/gems/*
+
+# Vim
+*.swp

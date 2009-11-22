@@ -2,6 +2,10 @@ require 'digest'
 
 class Post < AgnosticObject
 
+  if AgnosticObject.superclass.superclass == RedisRecord::Model
+    has_many :comments
+  end
+
   def self.create!(properties)
 
     raise Exception.new(":user_id is mandatory") if properties[:user_id].nil?

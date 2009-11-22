@@ -13,7 +13,7 @@ module PersistenceRedis
                        :logger => @@logger
                       )
 
-      @@db.flush_db if RAILS_ENV =~ /development/
+      #@@db.flush_db if RAILS_ENV =~ /development/
     end
 
     def self.create!
