@@ -4,7 +4,7 @@ class User < Persistence::Base
 
   # RedisRecord relations
   if ancestors.include?(RedisRecord::Model)
-    has_many :blogs
+    has_many :blogs, :posts, :comments
   end
 
   agnostic_accessor :login

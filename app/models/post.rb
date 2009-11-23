@@ -4,7 +4,7 @@ class Post < Persistence::Base
 
   # RedisRecord relations
   if ancestors.include?(RedisRecord::Model)
-    belongs_to :user
+    belongs_to :user, :blog
     has_many :comments
   end
 

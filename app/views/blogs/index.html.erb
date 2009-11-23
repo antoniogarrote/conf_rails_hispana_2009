@@ -9,7 +9,7 @@
         <div class='post-header'>
           <h2><%= post.get(:title) %>:</h2>
           <span class='post-date'>
-            Edited by <%= @user.get(:login) %> at <%= post.get(:created_at) %>
+            Edited by <%= current_user.get(:login) %> at <%= post.get(:created_at) %>
           </span>
         </div>
         <div class='post-body'>
