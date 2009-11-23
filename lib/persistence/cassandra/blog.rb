@@ -12,9 +12,21 @@ module PersistenceCassandra
         b.properties = PersistenceCassandra::Setup.db.get(b.column_family, id)
         b
       end
+      
+      def blog_all(args)
+        bloglist = PersistenceCassandra::Setup.db.get_range(:Blog)
+        blogs=[]
+        bloglist.each do |id|
+          b = ::Blog.new
+          b.properties = PersistenceCassandra::Setup.db.get(:Blog, id)
+          blogs << b
+        end
+        blogs
+      end
     end
 
     module InstanceMethods
+      #has_many
       def relation_blog_posts(args)
         postlist = PersistenceCassandra::Setup.db.get(:PostsforBlog, self.get("id"))
         posts=[]
@@ -25,6 +37,13 @@ module PersistenceCassandra
         end
         posts
       end
+      #belongs_to
+      def relation_blog_user(args)
+        u = ::User.new
+        u.properties = PersistenceCassandra::Setup.db.get(:User, self.get("user_id"))
+        u
+      end
+
     end
 
   end

@@ -100,7 +100,7 @@ module PersistenceCassandra
     # backend grouped by identity using the semantics
     # passed as arguments in the 'finder' parameter
     # and the values passed in the 'arguments' parameter.
-    def self.find(finder, arguments)
+    def self.find(finder, arguments=[])
       finder_method = "#{self.to_s.downcase}_#{finder}".to_sym
       self.send(finder_method, arguments)
     end

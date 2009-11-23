@@ -29,11 +29,10 @@
       </div>
     <% end %>
   </div>
-  <br />
   <div class='new-comment'>
     <form action="/blogs/<%= @blog.get(:id) %>/posts/<%= @post.get(:id) %>/comments/create" action="post">
       <label for='content'>
-        Drop a comment:
+        Leave your comment:
        </label>
       <textarea name='content' cols='60' rows='4'> </textarea>
       <br />
