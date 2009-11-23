@@ -89,6 +89,8 @@ module PersistenceCassandra
     def destroy!
       if @model == "blog"
         Persistence::Setup.db.remove(:BlogsforUser, @properties['user_id'], @properties['created_at'].to_uuidtime)
+      elsif @model == "post"
+        Persistence::Setup.db.remove(:PostsforBlog, @properties['blog_id'], @properties['created_at'].to_uuidtime)
       end
       Persistence::Setup.db.remove(column_family, @properties["id"])
       @properties = nil

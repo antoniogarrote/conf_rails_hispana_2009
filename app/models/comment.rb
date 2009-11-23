@@ -1,7 +1,7 @@
 class Comment < Persistence::Base
 
   # RedisRecord relations
-  if ancestors.include?(RedisRecord::Model)
+  if defined?(RedisRecord) && ancestors.include?(RedisRecord::Model)
     belongs_to :user
     belongs_to :post
   end

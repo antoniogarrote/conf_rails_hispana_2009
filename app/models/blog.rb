@@ -3,7 +3,7 @@ require 'digest'
 class Blog < Persistence::Base
 
   # RedisRecord relations
-  if ancestors.include?(RedisRecord::Model)
+  if defined?(RedisRecord) && ancestors.include?(RedisRecord::Model)
     belongs_to :user
     has_many :posts
   end

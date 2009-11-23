@@ -10,7 +10,7 @@ module PersistenceCassandra
     module ClassMethods
       def session_by_id(id)
         s = ::Session.new
-        s.properties = PersistenceCouchDB::Setup.db.get(s.column_family, id)
+        s.properties = PersistenceCassandra::Setup.db.get(s.column_family, id)
         s
       end
     end
