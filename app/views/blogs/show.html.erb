@@ -7,6 +7,7 @@
 <% end %>
 
 <h1><%= @blog.get(:title) %> </h1>
+<h5><%= @blog.get(:description) %> </h5>
 
 <div class='blog-posts'>
 <% @posts.each do |post| %>

@@ -3,14 +3,9 @@ require 'digest'
 class User < Persistence::Base
 
   # RedisRecord relations
-  if ancestors.include?(RedisRecord::Model)
+  if defined?(RedisRecord) && ancestors.include?(RedisRecord::Model)
     has_many :blogs, :posts, :comments
   end
-
-  agnostic_accessor :login
-  agnostic_accessor :password_hash
-  agnostic_accessor :email
-  agnostic_accessor :name
 
   def self.create!(properties)
     @user = User.new
