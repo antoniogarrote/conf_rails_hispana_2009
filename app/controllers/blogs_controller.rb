@@ -2,6 +2,16 @@ class BlogsController < ApplicationController
 
   before_filter :authenticate, :only => [:create, :new, :edit, :update, :destroy]
 
+  def index
+    begin
+      @blogs = [Blog.find(:all)].flatten
+    rescue Exception => ex
+      flash[:error] = "Ther has been some error retrieving blog data: #{ex.message}"
+      redirect_to :back
+    end
+   
+  end
+
   def show
     begin
       @blog = Blog.find(:by_id, params[:id])

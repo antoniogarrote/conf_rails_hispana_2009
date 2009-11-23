@@ -1,9 +1,40 @@
-<% if logged? %>
-<div id ='user_options'>
-  <%= link_to 'admin', :controller => 'users', :action => 'show', :id => current_user_id %>
-  <%= link_to 'new blog', :controller => 'blogs', :action => 'new' %>
-  <%= link_to 'log out', :controller => 'sessions', :action => 'destroy' %>
-</div>
-<% end %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<%= yield %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>the awesome blog</title>
+    <%= stylesheet_link_tag "main" %> 
+  </head>
+  <body>
+    <div id="container">
+
+      <div id="header">
+        <h1>the awesome blog</h1>
+        <small>with some <b><%= ENV['ENGINE'].capitalize %></b> rocket sauce</small>
+      </div>
+
+      <div id='user_options'>
+        <ul>
+          <li><%= link_to 'home', :controller => 'blogs', :action => 'index' %></li>
+          <% if logged? %>
+            <li><%= link_to 'admin', :controller => 'users', :action => 'show', :id => current_user.id %></li>
+            <li><%= link_to 'new blog', :controller => 'blogs', :action => 'new' %></li>
+            <li><%= link_to 'log out', :controller => 'sessions', :action => 'destroy' %></li>
+          <% else %>
+            <li><%= link_to 'log in', :controller => 'sessions', :action => 'new' %></li>
+            <li><%= link_to 'sign up', :controller => 'users', :action => 'new' %></li>
+          <% end %>
+
+        </ul>
+      </div>
+
+      <div id="content">
+        <%= yield %>
+      </div>
+
+    </div>
+  </body>
+</html>

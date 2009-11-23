@@ -1,0 +1,95 @@
+* {
+  margin:0;
+  padding:0;
+}
+html,body {
+  height:100%;
+  color:black;
+}
+body {
+  background-color: #363636;
+  font: 15px helvetica,arial,freesans,clean,sans-serif;
+  color: #EEE;
+  text-align:left;
+}
+table {
+  font-size:inherit;
+  font:100%;
+}
+select,input[type=text],input[type=password],input[type=image],textarea {
+  font:99% helvetica,arial,freesans,sans-serif;
+}
+select,option {
+  padding:0 .25em;
+}
+optgroup {
+  margin-top:.5em;
+}
+input.text {
+  padding:1px 0;
+}
+pre,code {
+  font:115% Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+  *font-size:100%;
+}
+body * {
+  line-height:1.4em;
+}
+img {
+  border:0;
+}
+ul {
+  list-style: none;
+}
+li {
+  display: inline;
+  padding-right: 10px;
+}
+a {
+  color: #FFB400;
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}
+table {
+  margin: 5px;
+}
+td,th {
+  padding: 2px;
+  border-bottom: 1px solid black;
+}
+label {
+  display: block;
+}
+input,textarea {
+  margin-bottom: 10px;
+}
+
+
+#container {
+  margin: 0 auto;
+  width: 80%;
+}
+#content {
+  margin-top: 20px;
+}
+#header {
+  border-bottom: 1px solid lightGray;
+  margin: 0 auto;
+}
+#header small {
+  color: #888;
+}
+#header h1 {
+  color: #FF00C1;
+  font-size: 5.5em;
+  letter-spacing: -0.1em;
+  text-shadow: #000 5px 5px 2px;
+}
+#user_options {
+  padding: 20px 5px 5px 5px;
+  background-color: #2A2A2A;
+}
+

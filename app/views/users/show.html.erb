@@ -1,11 +1,5 @@
 <%= render :partial => 'shared/notifications' %>
 
-<div id='user_options'>
-  <ul>
-    <li> <%= link_to 'new blog', :controller => 'blogs', :action => 'new' %> </li>
-  </ul>
-</div>
-
 <div id='user_blogs'>
   <h2> Blogs </h2>
   <table>
@@ -17,12 +11,13 @@
         <%= blog.get(:title) %>
       </td>
         <td>
-        <%= blog.get(:description)[0..200] %> ...
+        <%= truncate(blog.get(:description), :length => 20) %>
       </td>
       <td>
         <%= blog.get(:created_at) %>
       </td>
       <td>
+        <span><%= link_to 'show', :controller => 'blogs', :action => 'show', :id => blog.get(:id)%></span>
         <span><%= link_to 'edit', :controller => 'blogs', :action => 'edit', :id => blog.get(:id)%></span>
         <span><%= link_to 'delete', :controller => 'blogs', :action =>  'destroy', :id => blog.get(:id)%></span>
       </td>
