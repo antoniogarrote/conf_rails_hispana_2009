@@ -5,33 +5,23 @@
 
 <div class='post'>
   <div class='post-header'>
-    <h2><%= @post.get(:title) %>:</h2>
+    <h2><%= @post.get(:title) %></h2>
 
     <span class='post-date'>
       Edited by <%= @user.get(:login) %> at <%= @post.get(:created_at) %>
     </span>
   </div>
-  <br/>
   <div class='post-body'>
     <div class='post-content'>
       <%= @post.get(:content) %>
     </div>
   </div>
-  <div class='new-comment'>
-    <form action="/blogs/<%= @blog.get(:id) %>/posts/<%= @post.get(:id) %>/comments/create" action="post">
-      <label for='content'>
-        comment:
-       </label>
-      <textarea name='content' cols='50' rows='20'>
-      </textarea>
-      <input type="submit" value='create'></input>
-    </form>
-  </div>
   <div class='post-comments'>
+    Comments so far...
     <% @comments.each do |comment| %>
       <div class='comment'>
         <span class='comment-author'>
-          <%= comment.get(:user_name )%> said at <%=  comment.get(:created_at) %>
+          <b><%= comment.get(:user_name )%></b> said at <%= comment.get(:created_at) %>:
         </span>
         <span class='comment-body'>
           <%= comment.get(:content) %>
@@ -39,4 +29,14 @@
       </div>
     <% end %>
   </div>
+  <div class='new-comment'>
+    <form action="/blogs/<%= @blog.get(:id) %>/posts/<%= @post.get(:id) %>/comments/create" action="post">
+      <label for='content'>
+        Drop a comment:
+       </label>
+      <textarea name='content' cols='50' rows='5'></textarea>
+      <input type="submit" value='create'></input>
+    </form>
+  </div>
+
 </div>

@@ -92,4 +92,33 @@ input,textarea {
   padding: 20px 5px 5px 5px;
   background-color: #2A2A2A;
 }
-
+.notice {
+  color: #00FF00;
+}
+.error {
+  color: red;
+}
+.blog-posts {
+  margin-bottom: 10px;
+  border-bottom: 5px solid #333;
+}
+.post {
+  margin-left: 20px;
+  width: 50%;
+}
+.post-date {
+  font-size: small;
+  color: #888; 
+}
+.post-content {
+  margin: 5px 0px 20px 0px;
+}
+.comment {
+  margin-left: 20px;
+}
+.comment-author {
+  color: #888;
+}
+.new-comment {
+  margin-top: 30px;
+}
