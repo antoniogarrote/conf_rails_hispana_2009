@@ -2,7 +2,8 @@ require 'digest'
 
 class Blog < Persistence::Base
 
-  if superclass == RedisRecord::Model
+  # RedisRecord relations
+  if ancestors.include?(RedisRecord::Model)
     belongs_to :user
     has_many :posts
   end

@@ -1,6 +1,8 @@
 class Comment < Persistence::Base
 
-  if superclass == RedisRecord::Model
+  # RedisRecord relations
+  if ancestors.include?(RedisRecord::Model)
+    belongs_to :user
     belongs_to :post
   end
 
