@@ -92,6 +92,15 @@ input,textarea {
   padding: 20px 5px 5px 5px;
   background-color: #2A2A2A;
 }
+#footer {
+  border-top: 1px dotted  #555;
+  margin-top: 50px;
+  padding: 5px 0px 10px 0px;
+  text-align: center;
+}
+#footer small {
+  color: #555;
+}
 .notice {
   color: #00FF00;
 }
@@ -100,7 +109,7 @@ input,textarea {
 }
 .blog-posts {
   margin-bottom: 10px;
-  border-bottom: 5px solid #333;
+  border-bottom: 5px solid #444;
 }
 .post {
   margin-left: 20px;
