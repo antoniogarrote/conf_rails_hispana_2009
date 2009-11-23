@@ -1,8 +1,8 @@
 require 'digest'
 
-class User < AgnosticObject
+class User < Persistence::Base
 
-  if AgnosticObject.superclass.superclass == RedisRecord::Model
+  if superclass == RedisRecord::Model
     has_many :blogs
   end
 

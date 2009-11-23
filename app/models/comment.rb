@@ -1,6 +1,6 @@
-class Comment < AgnosticObject
+class Comment < Persistence::Base
 
-  if AgnosticObject.superclass.superclass == RedisRecord::Model
+  if superclass == RedisRecord::Model
     belongs_to :post
   end
 

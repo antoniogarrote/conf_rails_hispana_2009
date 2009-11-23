@@ -1,4 +1,4 @@
-class Session < AgnosticObject
+class Session < Persistence::Base
   def self.create!(properties)
     raise Exception.new("user_id is required") if properties[:user_id].nil?
 

@@ -1,8 +1,8 @@
 require 'digest'
 
-class Post < AgnosticObject
+class Post < Persistence::Base
 
-  if AgnosticObject.superclass.superclass == RedisRecord::Model
+  if superclass == RedisRecord::Model
     has_many :comments
   end
 
