@@ -20,14 +20,14 @@ class UsersController < ApplicationController
       flash[:error] = "Password confirmation doesn't match"
       redirect_to :back
     else
-      begin
+      # begin
         @u = User.create!(params.reject{ |k,v| k == :password_confirmation})
         flash[:notice] = "user created correctly"
         redirect_to :controller => 'sessions', :action => 'new'
-      rescue Exception => ex
-        flash[:error] = "Error creating user: #{ex.message}"
-        redirect_to :back
-      end
+      # rescue Exception => ex
+      #   flash[:error] = "Error creating user: #{ex.message}"
+      #   redirect_to :back
+      # end
     end
   end
 

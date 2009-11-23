@@ -1,15 +1,22 @@
 require 'digest'
 
-module PersistenceCouchDB
+class String
+  include Cassandra::Constants
+  def to_uuidtime
+    UUID.new(Time.parse(self))
+  end
+end
+
+module PersistenceCassandra
+  
   class Base
 
-    RETRIES = 50
-
-    include PersistenceCouchDB::User
-    include PersistenceCouchDB::Session
-    include PersistenceCouchDB::Blog
-    include PersistenceCouchDB::Post
-    include PersistenceCouchDB::Comment
+    include PersistenceCassandra::User
+    include PersistenceCassandra::Session
+    include PersistenceCassandra::Blog
+    include PersistenceCassandra::Post
+    include PersistenceCassandra::Comment
+    include Cassandra::Constants
 
     attr_accessor :properties
 
@@ -20,10 +27,7 @@ module PersistenceCouchDB
     # This function *doesn't* fetch the property again from the backend.
     # It retrieves the value from the local memory.
     def get(property)
-      property = property.to_s
-      property = "_id" if property == "id"
-      property = "_rev" if property == "rev"
-      @properties[property]
+      @properties[property.to_s]
     end
 
     # Sets the value of one of the properties retrieved
@@ -32,8 +36,7 @@ module PersistenceCouchDB
     # This function *doesn't* update the value of the property
     # in the backend. It only updates the local memory.
     def set(property, value)
-      property = property.to_s
-      @properties[property] = value
+      @properties[property.to_s] = value
     end
 
     # Retrieves again the values of a certain group of properties
@@ -41,7 +44,7 @@ module PersistenceCouchDB
     # the local memory.
     # Old values stored in local memory are overwritten.
     def reload!
-      @properties = Persistence::Setup.db.get(@properties['_id'])
+      @properties = Persistence::Setup.db.get(column_family, @properties['id'])
     end
 
     # Changes the values of a certain group of properties with
@@ -50,29 +53,12 @@ module PersistenceCouchDB
     # values.
     # On error, it must throw an exception.
     def update!
-      saved = false
-      retries = RETRIES
-      while !saved
         begin
-          res = Persistence::Setup.db.save_doc(@properties)
-          @properties = Persistence::Setup.db.get(res['id'])
-          saved = true
-        rescue Exception => ex
-          raise ex if ex.http_code != 409
-          if(retries > 0)
-            @new_properties = Persistence::Setup.db.get(@properties['_id'])
-            @properties.each_pair do |k,v|
-              if k != "_rev" && k != "_id"
-                @new_properties[k] = v
-              end
-            end
-            @properties = @new_properties
-          else
-            raise ex
-          end
+          Persistence::Setup.db.insert(column_family,@properties['id'], @properties)
+        rescue Exception
+          raise
         end
-      end
-      :ok
+        :ok
     end
 
     # It creates a new remote set of properties with
@@ -80,10 +66,15 @@ module PersistenceCouchDB
     # identity in the remote backend.
     # On error, it must throw an exception.
     def create!
-      @properties[:type] = @model
       gen_id!
-      res = Persistence::Setup.db.save_doc(@properties)
-      @properties = Persistence::Setup.db.get(res['id'])
+      Persistence::Setup.db.insert(column_family, @properties['id'], @properties)
+      if @model == "blog"
+        new_blog = { @properties['created_at'].to_uuidtime => @properties['id'] }
+        Persistence::Setup.db.insert(:BlogsforUser, @properties['user_id'], new_blog)
+      elsif @model == "post"
+        new_post = { @properties['created_at'].to_uuidtime => @properties['id'] }
+        Persistence::Setup.db.insert(:PostsforBlog, @properties['blog_id'], new_post)
+      end
       :ok
     end
 
@@ -96,7 +87,10 @@ module PersistenceCouchDB
     # further tries of accessing its values must
     # throw an exception.
     def destroy!
-      Persistence::Setup.db.delete_doc(@properties)
+      if @model == "blog"
+        Persistence::Setup.db.remove(:BlogsforUser, @properties['user_id'], @properties['created_at'].to_uuidtime)
+      end
+      Persistence::Setup.db.remove(column_family, @properties["id"])
       @properties = nil
     end
 
@@ -136,12 +130,18 @@ module PersistenceCouchDB
 
     def gen_id!
       if @model == "user"
-        @properties['_id'] = Digest::MD5.hexdigest(@properties["login"])
+        @properties['id'] = @properties['login']
       elsif @model == "blog"
-        @properties['_id'] = beautify(@properties['title'])
+        @properties['id'] = beautify(@properties['title'])
       elsif @model == "post"
-        @properties['_id'] = beautify(@properties['title'])
+        @properties['id'] = beautify(@properties['title'])
+      elsif @model == "session"
+        @properties['id'] = @properties['user_id']+Digest::MD5.hexdigest(Time.now.to_s)
       end
+    end
+    
+    def column_family
+      self.class.to_s.to_sym
     end
 
     private

@@ -1,0 +1,2 @@
+export CASSANDRA_HOME=/Users/pablo.delgado/cassandra/server/
+export CASSANDRA_CONF=/Users/pablo.delgado/code/rails/conf_rails_hispana_2009/config/cassandra

@@ -49,6 +49,7 @@ Rails::Initializer.run do |config|
       when 'redis'
         require 'redis'
       when 'cassandra'
+        require 'cassandra'
     end
 
     require File.join(RAILS_ROOT, "lib/persistence/#{PERSISTENCE}/init")
