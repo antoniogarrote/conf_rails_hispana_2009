@@ -1,5 +1,3 @@
-<%= render :partial => 'shared/notifications' %>
-
 <div id='user_blogs'>
   <h2> Blogs </h2>
   <table>
@@ -19,7 +17,7 @@
       <td>
         <span><%= link_to 'show', :controller => 'blogs', :action => 'show', :id => blog.get(:id)%></span>
         <span><%= link_to 'edit', :controller => 'blogs', :action => 'edit', :id => blog.get(:id)%></span>
-        <span><%= link_to 'delete', :controller => 'blogs', :action =>  'destroy', :id => blog.get(:id)%></span>
+        <span><%= link_to 'delete', {:controller => 'blogs', :action =>  'destroy', :id => blog.get(:id)}, :confirm => 'Are you sure?' %></span>
       </td>
       </tr>
       <% end %>

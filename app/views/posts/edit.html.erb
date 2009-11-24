@@ -1,17 +1,8 @@
-<%= render :partial => 'shared/notifications' %>
-
-<h1>Edit Post:</h1>
+<h1>Edit Post: <%= @post.get(:title) %></h1>
 <form action='blogs/<%= @blog.get(:id) %>/posts/update/<%= @post.get(:id) %>' method='post'>
   <span>
-    <label for='name'>title: </label>
-    <h3><%= @post.get(:title) %></h3>
-  </span>
-  <br/>
-  <span>
-    <label for='name'>description: </label>
-    <textarea name='description' cols='50' rows='20'>
-      <%= @post.get(:content) %>
-    </textarea>
+    <label for='name'>Description: </label>
+    <textarea name='description' cols='50' rows='20'><%= @post.get(:content) %></textarea>
   </span>
   <br/>
   <input type='submit' value='update'/>

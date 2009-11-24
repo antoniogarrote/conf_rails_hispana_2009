@@ -1,5 +1,3 @@
-<%= render :partial => 'shared/notifications' %>
-
 <% @blogs.each do |blog| %>
   <div class='blog-posts'>
     <h1><%= link_to blog.get(:title), :controller => 'blogs', :action => 'show', :id => blog.get(:id) %> </h1>

@@ -1,25 +1,12 @@
-<%= render :partial => 'shared/notifications' %>
-
-<ul>
-  <li><%= link_to 'new post', :controller => 'posts', :action => 'new', :blog_id => @blog.get(:id) %></li>
-</ul>
-
-<h1>Edit Blog:</h1>
+<h1>Edit Blog: <%= @blog.get(:title) %></h1>
 <form action='/blogs/update' method='post'>
   <%= hidden_field_tag :id, @blog.get(:id) %>
   <span>
-    <label for='name'>title: </label>
-    <h3><%= @blog.get(:title) %></h3>
+    <label for='name'>Description:</label>
+    <textarea name='description' cols='60' rows='4'><%= @blog.get(:description)%></textarea>
   </span>
   <br/>
-  <span>
-    <label for='name'>description: </label>
-    <textarea name='description' cols='50' rows='20'>
-      <%= @blog.get(:description)%>
-    </textarea>
-  </span>
-  <br/>
-  <input type='submit' value='update'/>
+  <input type='submit' value='Update'/>
 </form>
 
 <h2> Posts: </h2>
@@ -40,7 +27,7 @@
       </td>
       <td>
         <span><%= link_to 'edit', :controller => 'posts', :action => 'edit', :id => post.get(:id), :blog_id => @blog.get(:id) %></span>
-        <span><%= link_to 'delete', :controller => 'posts', :action => 'destroy', :id => post.get(:id) , :blog_id => @blog.get(:id) %></span>
+        <span><%= link_to 'delete', {:controller => 'posts', :action => 'destroy', :id => post.get(:id) , :blog_id => @blog.get(:id)}, :confirm => 'Are you sure?' %></span>
       </td>
       </tr>
       <% end %>

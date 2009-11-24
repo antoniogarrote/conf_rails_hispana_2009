@@ -30,13 +30,13 @@ class PostsController < ApplicationController
                  end
 
       if @user_id.nil?
-        flash[:error] = "user_id are required"
+        flash[:error] = "user_id is required"
         redirect_to :back
       else
         begin
           @p = Post.create!(params.merge(:user_id => @user_id))
 
-          flash[:notice] = "post created correctly"
+          flash[:notice] = "Post created successfully"
 
           redirect_to :controller => 'posts', :action => 'show', :id => @p.get(:id), :blog_id => params[:blog_id]
         rescue Exception => ex

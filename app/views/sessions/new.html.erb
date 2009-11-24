@@ -1,19 +1,17 @@
-<%= render :partial => 'shared/notifications' %>
-
-<h1>User sign in:</h1>
+<h1>Log in:</h1>
 <form action='/sessions' method='post'>
   <span>
-    <label for='name'>login: </label>
+    <label for='name'>Login: </label>
     <input name='login' type='text'/>
   </span>
   <br/>
   <span>
-    <label for='name'>password: </label>
+    <label for='name'>Password: </label>
     <input name='password'  type='password' />
   </span>
   <br/>
-  <input type='submit' value='sign in'/>
+  <input type='submit' value='Log in'/>
 </form>
 
 
-<%= link_to "register", :controller => 'users', :action => 'new' %>
+New to the awesome blog? <%= link_to "Sign up!", :controller => 'users', :action => 'new' %>

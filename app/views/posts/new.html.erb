@@ -1,7 +1,4 @@
-<%= render :partial => 'shared/notifications' %>
-
-
-<h1> Blog: <%= @blog.get(:title) %> </h1>
+<h1><%= @blog.get(:title) %> </h1>
 
 <h2>New Post:</h2>
 <form action='/blogs/<%= @blog.get(:id) %>/posts/create' method='post'>
@@ -13,7 +10,7 @@
   <br/>
   <span>
     <label for='name'>Content:</label>
-    <textarea name='content' cols='50' rows='20'></textarea>
+    <textarea name='content' cols='60' rows='8'></textarea>
   </span>
   <br/>
   <input type='submit' value='create'/>

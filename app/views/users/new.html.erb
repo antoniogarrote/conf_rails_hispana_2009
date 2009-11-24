@@ -1,31 +1,29 @@
-<%= render :partial => 'shared/notifications' %>
-
-<h1>User registration:</h1>
+<h1>Sign up:</h1>
 <form action='/users' method='post'>
   <span>
-    <label for='name'>login: </label>
+    <label for='name'>Login: </label>
     <input name='login' type='text'/>
   </span>
   <br/>
   <span>
-    <label for='name'>password: </label>
+    <label for='name'>Password: </label>
     <input name='password'  type='password' />
   </span>
   <br/>
   <span>
-    <label for='name'>password confirmation: </label>
+    <label for='name'>Password confirmation: </label>
     <input name='password_confirmation' type='password' />
   </span>
   <br/>
   <span>
-    <label for='name'> name: </label>
+    <label for='name'>Name: </label>
     <input name='name'  type='text' />
   </span>
   <br/>
   <span>
-    <label for='name'>email: </label>
+    <label for='name'>Email: </label>
     <input name='email'  type='text'/>
   </span>
   <br/>
-  <input type='submit' value='register'/>
+  <input type='submit' value='Sign me up'/>
 </form>

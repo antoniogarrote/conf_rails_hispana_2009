@@ -1,5 +1,3 @@
-<%= render :partial => 'shared/notifications' %>
-
 <% if logged? %>
   <ul>
     <li><%= link_to 'new post', :controller => 'posts', :action => 'new', :blog_id => @blog.get(:id) %></li>
@@ -7,7 +5,7 @@
 <% end %>
 
 <h1><%= @blog.get(:title) %> </h1>
-<h5><%= @blog.get(:description) %> </h5>
+<span><%= @blog.get(:description) %> </span>
 
 <div class='blog-posts'>
 <% @posts.each do |post| %>

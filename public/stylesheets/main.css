@@ -58,7 +58,7 @@ table {
 }
 td,th {
   padding: 2px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #2A2A2A;
 }
 label {
   display: block;
