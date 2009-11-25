@@ -4,6 +4,7 @@
 gem 'rails', '2.3.2'
 gem 'couchrest'
 gem 'redis', '0.1'
+gem 'redisrecord', '0.1'
 gem 'cassandra'
 
 # for development
